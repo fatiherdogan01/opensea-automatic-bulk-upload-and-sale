@@ -17,6 +17,8 @@ Any distribution, modification or commercial use is strictly prohibited.
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as WDW
 
+from app.services.wallets.metamask import MetaMask
+
 # Python internal imports.
 from ...utils.colors import GREEN, RED, RESET
 
@@ -26,8 +28,9 @@ class Login:
 
     def __init__(self, web: object, wallet: object) -> None:
         """Get the password and the recovery_phrase from the text file."""
-        self.login_url = 'https://opensea.io/login?referrer=%2Fasset%2Fcreate'
-        self.create_url = 'https://opensea.io/asset/create'
+        sub_url = 'testnets.opensea.io' if MetaMask.network_name != 'Main' else 'opensea.io'
+        self.login_url = f'https://{sub_url}/login?referrer=%2Fasset%2Fcreate'
+        self.create_url = f'https://{sub_url}/asset/create'
         self.fails = 0  # Counter of fails during wallet connection.
         self.success = False  # Boolean returned after login.
         # Get the instance of the needed classes.

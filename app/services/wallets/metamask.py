@@ -25,17 +25,26 @@ from ...utils.const import METAMASK_IMPORT
 
 class MetaMask:
     """Allow the connection and the signature of contracts."""
-
+    
+    # Supported test networks => 'Rinkeby', 'Ropsten', 'Kovan'
+    network_name = 'Main' 
+            
     def __init__(self, web: object, wallet: object) -> None:
         self.fails = 0  # Counter of fails during wallet connection.
         # Get the instance of the needed classes.
         self.web = web  # From the Webdriver class.
         self.wallet = wallet  # From the Wallet class.
+       
+    def switch_test_network(self, network_name: str) -> None:
+        """Switch Test Network"""
+        self.web.clickable('//*[contains(@class, "network-display")][position()=1]')
+        self.web.clickable(f'//span[contains(text(), "{network_name} Test Network")]')
+        print(f'Switch {network_name} Test Network.')
 
     def login(self) -> bool:
         """Login to the MetaMask extension."""
         try:  # Try to login to the MetaMask extension.
-            print('Login to MetaMask.', end=' ')
+            print('Login to MetaMask.')
             self.web.window_handles(0)  # Switch to the MetaMask extension tab.
             self.web.driver.refresh()  # Prevent a blank page.
             # Click on the "Start" button.
@@ -63,6 +72,8 @@ class MetaMask:
                 '//*[contains(@class, "btn-primary")][position()=1]')
             if self.wallet.private_key != '':  # Change account.
                 self.web.clickable('//button[@data-testid="popover-close"]')
+                if self.network_name != 'Main':
+                    self.switch_test_network(self.network_name)
                 self.web.clickable(  # Click on the menu icon.
                     '//*[@class="account-menu__icon"][position()=1]')
                 self.web.clickable('//*[contains(@class, "account-menu__item--'
