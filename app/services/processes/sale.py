@@ -50,6 +50,8 @@ class Sale:
             self.structure.nft_url = self.web.driver.current_url\
                 .replace('/sell', '')  # Remove the "/sell" part.
             self.web.driver.get(self.structure.nft_url + '/sell')  # Sale page.
+        elif 2 in self.structure.action:
+            self.web.driver.get(self.structure.nft_url + '/sell')  # Sale page.
 
     def switch_polygon(self) -> bool:
         """Switch to Polygon blockchain if wallet is on Ethereum."""
