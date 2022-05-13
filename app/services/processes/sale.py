@@ -238,7 +238,7 @@ class Sale:
             if self.switch_polygon():  # Switch to Polygon blockchain.
                 return self.sale()  # Re list the NFT.
             self.sign_contract()  # Sign the contract.
-            self.check_listed()  # Check if the NFT is listed.
+            #self.check_listed()  # Check if the NFT is listed.
             print(f'{GREEN}NFT put up for sale.{RESET}')
         except Exception as error:  # Any other error.
             print(f'{RED}NFT sale cancelled.{RESET}',

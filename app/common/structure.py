@@ -120,6 +120,7 @@ class Structure:
             self.duration: list or str = nft_data[15 - index]
             self.specific_buyer: list or bool = nft_data[16 - index]
             self.quantity: int = nft_data[17 - index]
+            self.unlockable_content: str = nft_data[18 - index] 
         if 2 in self.action and index != 0:  # "Sale only" details.
             self.nft_url: str = str(nft_data[0])
             self.supply: int = nft_data[1]

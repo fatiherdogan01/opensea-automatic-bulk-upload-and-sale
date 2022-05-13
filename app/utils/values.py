@@ -39,7 +39,8 @@ SALE = [
     'method',
     'duration',
     'specific_buyer',
-    'quantity'
+    'quantity',
+    'unlockable_content'
 ]
 
 # Upload and sale details for the metadata file.
