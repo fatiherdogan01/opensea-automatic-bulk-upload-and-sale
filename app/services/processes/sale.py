@@ -16,8 +16,6 @@ Any distribution, modification or commercial use is strictly prohibited.
 # Selenium module imports: pip install selenium
 from time import sleep
 from selenium.common.exceptions import TimeoutException as TE
-from selenium.webdriver.support.ui import WebDriverWait as WDW
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 
 # Python internal imports.
@@ -205,17 +203,13 @@ class Sale:
 
     def sign_contract(self) -> None:
         """Sign the Polygon or Ethereum contract."""
-        """Sign the Polygon or Ethereum contract."""
-        try:  # Sometimes the MetaMask pop up takes 2 seconds to appear.
-            WDW(self.web.driver, 10).until(EC.number_of_windows_to_be(2))
-            WDW(self.web.driver, 10).until(EC.number_of_windows_to_be(3))
-        except Exception:  # The pop up appears so it can be interacted.
-            pass  # No error can be raised.
-        try:  # Sign the Wyvern 2.3 contract.
-            self.wallet.contract()
+        try:  # Polygon blockchain requires a click on a button.
+            if self.structure.blockchain == 'Polygon':  # "Sign" button.
+                self.web.clickable(  # Click on the "Sign" button.
+                    '//button[contains(text(), "Sign")]')
+            self.wallet.contract(True)  # Sign the Wyvern 2.3 contract.
         except Exception:  # An error occured while listing the NFT.
-            if isinstance(self.wallet.recovery_phrase, str):
-                raise TE('Cannot sign the wallet contract.')
+            raise TE('Cannot sign the wallet contract.')
 
     def check_listed(self) -> None:
         """Check if the NFT is listed."""
