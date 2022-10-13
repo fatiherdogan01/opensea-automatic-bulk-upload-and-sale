@@ -56,7 +56,8 @@ class Login:
             return True
         except Exception:  # The contract failed.
             try:
-                self.wallet.contract()  # Sign the contract.
+                self.wallet.sign(False, 1) if self.web.window == 1 else \
+                    self.wallet.contract()  # Sign the contract.
                 self.web.window_handles(1)  # Switch again to the OpenSea tab.
                 # Check again if the login to OpenSea worked.
                 WDW(self.web.driver, 10).until(EC.url_to_be(self.create_url))
