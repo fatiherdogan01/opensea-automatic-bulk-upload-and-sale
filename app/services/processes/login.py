@@ -14,6 +14,7 @@ Any distribution, modification or commercial use is strictly prohibited.
 
 
 # Selenium module imports: pip install selenium
+from time import sleep
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as WDW
 
@@ -49,6 +50,7 @@ class Login:
             self.web.clickable('//button[contains(@class, "show-more")]')
             self.web.clickable(  # Click on the wallet button in the list.
                 f'//*[contains(text(), "{self.wallet.wallet}")]/../..')
+            sleep(1)
             self.wallet.sign()  # Sign the login on OpenSea.
             # Check if the login to OpenSea worked.
             WDW(self.web.driver, 15).until(EC.url_to_be(self.create_url))
