@@ -1,15 +1,26 @@
 {
     "nft": [
         {
-            "nft_url": "",
-            "supply": 0,
-            "blockchain": "",
-            "sale_type": "",
-            "price": 0,
+            "nft_url": "https://testnets.opensea.io/assets/goerli/0xf4910c763ed4e47a585e2d34baa9a4b611ae448c/29484731367801831413887770403199770254470309493722692750207523961669079269377",
+            "supply": 1,
+            "blockchain": "Ethereum",
+            "sale_type": "Fixed Price",
+            "price": 0.3,
             "method": [],
-            "duration": [],
+            "duration": ["6 months"],
             "specific_buyer": "",
-            "quantity": 0
+            "quantity": 1
+        },
+        {
+            "nft_url": "https://testnets.opensea.io/assets/goerli/0xf4910c763ed4e47a585e2d34baa9a4b611ae448c/29484731367801831413887770403199770254470309493722692750207523962768590897153",
+            "supply": 1,
+            "blockchain": "Ethereum",
+            "sale_type": "Fixed Price",
+            "price": 0.8,
+            "method": [],
+            "duration": ["6 months"],
+            "specific_buyer": "",
+            "quantity": 1
         }
     ]
 }

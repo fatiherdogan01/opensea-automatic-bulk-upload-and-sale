@@ -26,7 +26,7 @@ from ...utils.const import METAMASK_IMPORT
 class MetaMask:
     """Allow the connection and the signature of contracts."""
     
-    # Supported test networks => 'Rinkeby', 'Ropsten', 'Kovan'
+    # Supported test networks => 'Goerli', 'Mumbai'
     network_name = 'Main' 
             
     def __init__(self, web: object, wallet: object) -> None:

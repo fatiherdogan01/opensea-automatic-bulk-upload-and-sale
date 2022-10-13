@@ -166,6 +166,12 @@ def download_browser(browser: int) -> str:
     """Try to download the webdriver using the Driver Manager."""
     try:
         # Set the name of the webdriver according to browser choice.
+
+        # If you have a mismatch with chromedriver use this.
+        # https://chromedriver.storage.googleapis.com/index.html?path=107.0.5304.18/
+        # browser_path = abspath('assets/chromedriver') # chromedriver_mac64_m1.zip
+        # return browser_path
+
         webdriver = 'ChromeDriver' if browser == 0 else 'GeckoDriver'
         print(f'Downloading the {webdriver}.', end=' ')
         # Download the webdriver using the Driver Manager module.

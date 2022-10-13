@@ -57,8 +57,6 @@ def process(action: list, solver: int, key: str, structure: object,
                         wallet, recaptcha)
     if 2 in action:  # Initialize the Sale class.
         from app.services.processes.sale import check_price, Sale
-        from app.services.processes.edit import check_unlockable_content, Edit
-        edit = Edit(structure, web)
         sale = Sale(structure, save, web, wallet)
     if 3 in action:  # Send the object to the class.
         delete.init(structure, web)
@@ -71,9 +69,6 @@ def process(action: list, solver: int, key: str, structure: object,
         if 1 in action:  # Upload part.
             success = upload.upload()  # Get the result of the upload.
         if (2 in action and success) or action == [2]:  # Sale part.
-            # Check unlockable content.
-            if check_unlockable_content(structure.unlockable_content):
-                edit.set_unlockable_content()
             # Check the price validity by sending price and blockchain.
             if check_price(structure.price, structure.blockchain):
                 sale.sale()  # Process to listing of the NFT.
